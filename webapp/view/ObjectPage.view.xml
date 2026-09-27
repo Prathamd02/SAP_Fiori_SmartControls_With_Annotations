@@ -1,0 +1,129 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:uxap="sap.uxap"
+    controllerName="project1.controller.View2"
+>
+    <Page
+        title="Object Page"
+        showNavButton="true"
+        navButtonPress="onBackPress"
+    >
+        <uxap:ObjectPageLayout id="objectPage">
+            <!-- ============================= HEADER ====================================== -->
+
+            <uxap:headerTitle>
+                <uxap:ObjectPageDynamicHeaderTitle>
+                    <uxap:heading>
+                        <Title text="{oModel>/details/ProductName}" />
+                    </uxap:heading>
+
+                    <uxap:expandedContent>
+                        <Text text="{oModel>/details/ProductID}" />
+                    </uxap:expandedContent>
+                </uxap:ObjectPageDynamicHeaderTitle>
+            </uxap:headerTitle>
+            <!-- ============================= SECTIONS ===================================== -->
+            <uxap:ObjectPageSection
+                title="General Information"
+                titleUppercase="false"
+            >
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="General Information">
+                        <uxap:blocks>
+                            <form:SimpleForm
+                                editable="false"
+                                layout="ResponsiveGridLayout"
+                                labelSpanXL="3"
+                                labelSpanL="3"
+                                labelSpanM="4"
+                                labelSpanS="12"
+                                columnsXL="2"
+                                columnsL="2"
+                                columnsM="1"
+                            >
+                                <form:content>
+                                    <Label text="Product Name" />
+                                    <Text text="{oModel>/details/ProductName}" />
+
+                                    <Label text="Reorder Level" />
+                                    <Text text="{oModel>/details/ReorderLevel}" />
+                                </form:content>
+                            </form:SimpleForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+
+            <uxap:ObjectPageSection
+                title="Product Price"
+                titleUppercase="false"
+            >
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="Product Price">
+                        <uxap:blocks>
+                            <form:SimpleForm
+                                editable="false"
+                                layout="ResponsiveGridLayout"
+                                labelSpanXL="3"
+                                labelSpanL="3"
+                                labelSpanM="4"
+                                labelSpanS="12"
+                                columnsXL="2"
+                                columnsL="2"
+                                columnsM="1"
+                            >
+                                <form:content>
+                                    <Label text="Category ID" />
+                                    <Text text="{oModel>/details/CategoryID}" />
+
+                                    <Label text="Units in Stock" />
+                                    <Text text="{oModel>/details/UnitsInStock}" />
+
+                                    
+                                    <Label text="Units on Order" />
+                                    <Text text="{oModel>/details/UnitsOnOrder}" />
+                                </form:content>
+                            </form:SimpleForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+
+
+            <uxap:ObjectPageSection
+                title="Others"
+                titleUppercase="false"
+            >
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="Others">
+                        <uxap:blocks>
+                            <form:SimpleForm
+                                editable="false"
+                                layout="ResponsiveGridLayout"
+                                labelSpanXL="3"
+                                labelSpanL="3"
+                                labelSpanM="4"
+                                labelSpanS="12"
+                                columnsXL="2"
+                                columnsL="2"
+                                columnsM="1"
+                            >
+                                <form:content>
+                                    <Label text="Supplier ID" />
+                                    <Text text="{oModel>/details/SupplierID}" />
+
+                                    <Label text="Qty Per Unit" />
+                                    <Text text="{oModel>/details/QuantityPerUnit}" />
+                                </form:content>
+                            </form:SimpleForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+
+        </uxap:ObjectPageLayout>
+    </Page>
+</mvc:View>

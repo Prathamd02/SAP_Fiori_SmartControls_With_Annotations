@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="/V2/Northwind/Northwind.svc/$metadata">
+        <edmx:Include Namespace="NorthwindModel" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
+    </edmx:Reference>
+
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1" />
+    </edmx:Reference>
+
+    <edmx:DataServices>
+        <Schema Namespace="NorthWindAnnotation" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="NorthwindModel.Order">
+                <!-- "Annotations" -  used to define the target entity type, property, or service path to which a set of rules will apply.  /!-->
+
+                <!-- Filters  /!-->
+
+                <Annotation Term="UI.SelectionFields">
+                    <!-- "Annotation" - represents a single, specific vocabulary term or metadata instruction applied to the targeted element.  /!-->
+                    <Collection>
+                        <!--  holds an ordered list of multiple filters /!-->
+                        <PropertyPath>OrderID</PropertyPath>
+                        <!--  points directly to a specific field name (property) defined in your OData Entity Type. /!-->
+                        <PropertyPath>EmployeeID</PropertyPath>
+                        <PropertyPath>OrderDate</PropertyPath>
+                        <PropertyPath>ShipCity</PropertyPath>
+                    </Collection>
+                </Annotation>
+
+                <!--Table-->
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="OrderID" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CustomerID" />
+                            <PropertyValue Property="Label" String="Customer ID" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="EmployeeID" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="OrderDate" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ShipName" />
+                            <PropertyValue Property="Label" String="Ship Name" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ShipCity" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+
+            <!-- For adding a global label for a particular field. But the label given inside the table takes precedence -->
+
+            <Annotations Target="NorthwindModel.Order/OrderID">
+                <Annotation Term="Common.Label" String="Order ID" />
+            </Annotations>
+            <Annotations Target="NorthwindModel.Order/EmployeeID">
+                <Annotation Term="Common.Label" String="Employee ID" />
+                <!-- > For hiding filters
+                  <Annotation Term="UI.HiddenFilter" Bool="true"/>   </!-->
+            </Annotations>
+            <Annotations Target="NorthwindModel.Order/OrderDate">
+                <Annotation Term="Common.Label" String="Order Date" />
+            </Annotations>
+            <Annotations Target="NorthwindModel.Order/ShipCity">
+                <Annotation Term="Common.Label" String="Ship City" />
+            </Annotations>
+
+            <!-- Hiding a filed globally -->
+            <!-- >   To hide coulmns 
+            <Annotations Target="NorthwindModel.Order/HireDate">
+                 <Annotation Term="UI.Hidden" String="Order ID"/>  
+            </Annotations></!-->
+
+            <!-- For making the 'ShipCity' filter as dropdown -->
+            <Annotations Target="NorthwindModel.Order/ShipCity">
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>                                        <!-- Tells UI5 that ShipCity has a fixed list of values.-->
+                    <Annotation Term="Common.ValueList">                                                                <!-- how to create the value help for ShipCity.-->
+                        <Record Type="Common.ValueListType">                                                            <!-- Says this configuration is for a value list..-->
+                            <PropertyValue Property="CollectionPath" String="Orders" />                                 <!-- Tells UI5 where to get the values from. Here, values come from "Orders"-->
+                            <PropertyValue Property="Parameters">                                                       <!-- Tells UI5 how the filter field and value list are connected.-->
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterInOut">                                      <!-- Allows the value to go into and come back from the value help.-->
+                                        <PropertyValue Property="LocalDataProperty" PropertyPath="ShipCity" />          <!-- Tells UI5 which 'field in your main entity is being filtered'. Here: "ShipCity".-->
+                                        <PropertyValue Property="ValueListProperty" String="ShipCity" />                <!-- Tells UI5 which field 'from the value list should be used'. Here: "ShipCity".-->
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

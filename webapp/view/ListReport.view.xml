@@ -1,0 +1,33 @@
+<mvc:View
+    controllerName="smartcontrolswithannotations.controller.ListReport"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+        showHeader="false"
+    >
+        <content>
+            <!-- 'SmartFilterBar' is for retrieves and analyzes the metadata and annotations of OData services   -->
+            <smartfilterbar:SmartFilterBar
+                id="smartFilBar"
+                entitySet="Orders"
+            >
+               
+            </smartfilterbar:SmartFilterBar>
+
+            <smarttable:SmartTable
+                id="smartTable"
+                smartFilterId="smartFilBar"
+                entitySet="Orders"
+                enableAutoColumnWidth="true"
+                enableAutoBinding="true"
+                tableType="ResponsiveTable"
+                showRowCount="true"
+            />
+        </content>
+    </Page>
+</mvc:View>
