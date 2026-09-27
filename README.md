@@ -19,6 +19,8 @@
 ## smartcontrols_with_annotations
 
 An SAP Fiori application.
+<img width="1920" height="1080" alt="Screenshot (33)" src="https://github.com/user-attachments/assets/b820caf1-e469-49a0-91a6-b901197655a8" />
+
 
 ### Starting the generated app
 
